@@ -1,30 +1,41 @@
-const fs = require('fs');
-const profileDataArgs = process.argv.slice(2, process.argv.length)
+const inquirer = require('inquirer');
 
-const [name] = profileDataArgs;
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Please enter team managers name',
+    },
 
+    {
+      type: 'input',
+      name: 'id',
+      message: 'Enter team managers employee ID',
+    },
 
-const generatePage = (name, github) => {
-    return `
-    <!DOCTYPE html> 
-    <html lang="en"> 
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Portfolio Demo</title>
-    </head>
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Enter team managers email address',
+    },
+
+    {
+      type: 'input',
+      name: 'officenum',
+      message: 'Enter team managers office number'
+    },
+
+  ])
+  .then(answers => console.log(answers))
+//const fs = require('fs');
+//const generatePage = require('./src/html-template.js');
+//const pageHTML = generatePage(name);
+
+//fs.writeFile('./index.html', generatePage(name), err => {
+  //if (err) throw new Error(err);
+
+  //console.log('Page complete!');
+//});
+
   
-    <body>
-      <h1>${name}</h1>
-     
-    </body>
-    </html>
-    `;
-  };
-
-  fs.writeFile('index.html', generatePage(name), err => {
-    if (err) throw err;
-
-    console.log('Page complete!')
-  })
