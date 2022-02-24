@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generatePage = require('./src/html-template.js');
 
-
-const promptManager = () => {
+const promptManager = managerData => {
 
 return inquirer
   .prompt([
@@ -132,12 +133,32 @@ return inquirer.prompt ([
 }
 
 promptManager()
-  .then(answers => console.log(answers))
+  .then (managerData => {
+   const manHTML = generatePage(managerData);
+  })
   .then(promptTeam)
-  .then(teamAnswers => console.log(teamAnswers))
+  .then( teamData => {
+      const pageHTML = generatePage( teamData);
+
+    fs.writeFile('./index.html', pageHTML, err => {
+     if (err) throw new Error(err);
+
+      console.log('Page created! Check out index.html in this directory to see it!');
+     });
+
+     fs.copyFile('./src/style.css', 'style.css', err => {
+       if (err) {
+         console.log(err);
+         return;
+       }
+       console.log("styles added successfully!")
+     })
+
+  });
   
-//const fs = require('fs');
-//const generatePage = require('./src/html-template.js');
+  
+//
+//
 //const pageHTML = generatePage(name);
 
 //fs.writeFile('./index.html', generatePage(name), err => {
