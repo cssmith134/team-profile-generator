@@ -1,6 +1,9 @@
 const inquirer = require('inquirer');
 
-inquirer
+
+const promptManager = () => {
+
+return inquirer
   .prompt([
     {
       type: 'input',
@@ -25,9 +28,114 @@ inquirer
       name: 'officenum',
       message: 'Enter team managers office number'
     },
-
   ])
+};
+
+const promptTeam = teamData => {
+console.log (`
+
+================
+Add Team Members
+================
+
+`);
+//if (!teamData.teamMember) {
+  //teamData.teamMember = [];
+//}
+
+return inquirer.prompt ([
+
+  {
+    type: 'confirm',
+    name: 'engineer',
+    message: 'Would you like to add an engineer to your team?',
+    default: false
+  },
+
+  {
+    type: 'input',
+    name: 'engineerName',
+    message: "Enter engineers name",
+    when: ({engineer}) => engineer
+
+  },
+
+  {
+    type: 'input',
+    name: 'engineerid',
+    message: 'Enter engineers ID',
+    when: ({engineer}) => engineer
+  },
+
+  {
+    type: 'input',
+    name: 'engineerEmail',
+    message: 'Enter engineers email',
+    when: ({engineer}) => engineer
+  },
+
+  {
+    type: 'input',
+    name: 'engineerGithub',
+    message: 'Enter engineers Github username',
+    when: ({engineer}) => engineer
+  },
+
+
+
+  {
+    type: 'confirm',
+    name: 'intern',
+    message: 'Would you like to add an intern to your team?',
+    default: false
+  },
+
+  {
+    type: 'input',
+    name: 'internName',
+    message: 'Enter interns name',
+    when: ({intern}) => intern,
+  },
+
+  {
+    type: 'input',
+    name: 'internId',
+    message: 'Enter interns ID',
+    when: ({intern}) => intern,
+  },
+
+  {
+    type: 'input',
+    name: 'internEmail',
+    message: 'Enter interns Email',
+    when: ({intern}) => intern,
+  },
+
+  {
+    type: 'input',
+    name: 'internSchool',
+    message: 'Enter interns school',
+    when: ({intern}) => intern,
+  }
+
+
+])
+//.then(promptData => {
+ // teamData.teamMember.push(promptData);
+  //if (promptData.confirmAddTeam) {
+   // return promptTeam(teamData) 
+ // } else {
+   // return teamData;
+ // }
+//})
+
+}
+
+promptManager()
   .then(answers => console.log(answers))
+  .then(promptTeam)
+  .then(teamAnswers => console.log(teamAnswers))
+  
 //const fs = require('fs');
 //const generatePage = require('./src/html-template.js');
 //const pageHTML = generatePage(name);
