@@ -39,9 +39,10 @@ return inquirer
   ])
   .then((managerData) => {
     promptTeam()
-    
-    
+    const manager = new Manager(managerData);
+    teamArray.push(manager)
   })
+
 };
 
 const promptEngineer = () => {
