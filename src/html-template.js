@@ -1,7 +1,7 @@
 
 
 
-const generateManager = (managerData) => {
+const generateManager = managerData => {
     return `
       <ul class="list-unstyled">
          <li>Employee Name: ${managerData.name}</li?
@@ -39,7 +39,7 @@ const generatePage = teamData => {
   
     <div>
 
-       ${generateManager}
+       ${generateManager(managerData)}
 
     </div>
      
