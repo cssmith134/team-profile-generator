@@ -1,5 +1,21 @@
-module.exports = templateData => {
-const {engineerName, engineerid, engineerEmail, engineerGithub} = templateData;
+
+
+
+const generateManager = (managerData) => {
+    return `
+      <ul class="list-unstyled">
+         <li>Employee Name: ${managerData.name}</li?
+         <li>Employee ID: ${managerData.id}</li>
+         <li>Email: ${managerData.email}</li>
+         <li>Office Number:${managerData.officeNumber}</i>
+     </ul>`
+ }
+
+
+const generatePage = teamData => {
+
+
+
     return `
     <!DOCTYPE html> 
     <html lang="en"> 
@@ -17,24 +33,24 @@ const {engineerName, engineerid, engineerEmail, engineerGithub} = templateData;
     <div class="header">
     <div class="jumbotron bg-warning">
         <h1> My Team </h1>
-    </div>
-    </div>
 
-     
-    <div class="card-body">
-    <ul class="list-unstyled">
-        <li>Employee Name: ${engineerName}</li?
-        <li>Employee ID: ${engineerid}</li>
-        <li>Email: <a href="mailto:grant@gmail.com">${engineerEmail}</a></li>
-        <li>GitHub Username: <a href="https://github.com/nosremetnarg" target="_blank">${engineerGithub}</a></i>
-    </u>
-</div>
+    </div>
+    </div>
+  
+    <div>
+
+       ${generateManager}
+
+    </div>
      
     </body>
     </html>
     `;
   
 };
-  
 
-  
+module.exports = generatePage;
+
+
+
+

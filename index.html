@@ -15,18 +15,23 @@
     <div class="header">
     <div class="jumbotron bg-warning">
         <h1> My Team </h1>
-    </div>
-    </div>
 
-     
-    <div class="card-body">
-    <ul class="list-unstyled">
-        <li>Employee Name: mnaggie</li?
-        <li>Employee ID: cs</li>
-        <li>Email: <a href="mailto:grant@gmail.com">cs</a></li>
-        <li>GitHub Username: <a href="https://github.com/nosremetnarg" target="_blank">da</a></i>
-    </u>
-</div>
+    </div>
+    </div>
+  
+    <div>
+
+       (managerData) => {
+    return `
+      <ul class="list-unstyled">
+         <li>Employee Name: ${managerData.name}</li?
+         <li>Employee ID: ${managerData.id}</li>
+         <li>Email: ${managerData.email}</li>
+         <li>Office Number:${managerData.officeNumber}</i>
+     </ul>`
+ }
+
+    </div>
      
     </body>
     </html>

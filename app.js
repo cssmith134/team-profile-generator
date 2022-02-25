@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generatePage = require('./src/html-template.js');
 
-const promptManager = managerData => {
+const promptManager = () => {
 
 return inquirer
   .prompt([
@@ -30,19 +30,14 @@ return inquirer
       message: 'Enter team managers office number'
     },
   ])
+  .then((managerData) => {
+    promptTeam()
+    
+  })
 };
 
-const promptTeam = teamData => {
-console.log (`
+const promptEngineer = () => {
 
-================
-Add Team Members
-================
-
-`);
-//if (!teamData.teamMember) {
-  //teamData.teamMember = [];
-//}
 
 return inquirer.prompt ([
 
@@ -81,62 +76,99 @@ return inquirer.prompt ([
     message: 'Enter engineers Github username',
     when: ({engineer}) => engineer
   },
-
-
-
-  {
-    type: 'confirm',
-    name: 'intern',
-    message: 'Would you like to add an intern to your team?',
-    default: false
-  },
-
-  {
-    type: 'input',
-    name: 'internName',
-    message: 'Enter interns name',
-    when: ({intern}) => intern,
-  },
-
-  {
-    type: 'input',
-    name: 'internId',
-    message: 'Enter interns ID',
-    when: ({intern}) => intern,
-  },
-
-  {
-    type: 'input',
-    name: 'internEmail',
-    message: 'Enter interns Email',
-    when: ({intern}) => intern,
-  },
-
-  {
-    type: 'input',
-    name: 'internSchool',
-    message: 'Enter interns school',
-    when: ({intern}) => intern,
-  }
-
-
 ])
-//.then(promptData => {
- // teamData.teamMember.push(promptData);
-  //if (promptData.confirmAddTeam) {
-   // return promptTeam(teamData) 
- // } else {
-   // return teamData;
- // }
-//})
 
-}
+  .then((engineerData) => {
+
+    promptTeam()
+
+  })
+
+};
+
+  const promptIntern = () => {
+
+  inquirer.prompt([
+
+    {
+      type: 'confirm',
+      name: 'intern',
+      message: 'Would you like to add an intern to your team?',
+      default: false
+    },
+
+    {
+      type: 'input',
+      name: 'internName',
+      message: 'Enter interns name',
+      when: ({intern}) => intern,
+    },
+
+    {
+      type: 'input',
+      name: 'internId',
+      message: 'Enter interns ID',
+      when: ({intern}) => intern,
+    },
+
+    {
+      type: 'input',
+      name: 'internEmail',
+      message: 'Enter interns Email',
+      when: ({intern}) => intern,
+    },
+
+    {
+      type: 'input',
+      name: 'internSchool',
+      message: 'Enter interns school',
+      when: ({intern}) => intern,
+    }
+
+  ])
+
+  .then((internData) => {
+      promptTeam()
+  })
+
+};
+
+const promptTeam = () => {
+  inquirer.prompt([
+    {
+      type: 'list',
+      name: 'choices',
+      message: 'Would you like to add a Engineer, add a Intern, or exit?',
+      choices: [
+          'Engineer',
+          'Intern',
+          'Exit'
+      ]
+    }
+  ])
+
+  .then((choices) =>{
+
+    
+
+    if (choices.choices == "Engineer") {
+       promptEngineer()
+       
+    } else if (choices.choices == 'Intern') {
+       promptIntern()
+       
+    } else {
+      generatePage()
+    }
+    
+
+  })
+
+};
 
 promptManager()
-  .then (managerData => {
-   const manHTML = generatePage(managerData);
-  })
-  .then(promptTeam)
+  
+ 
   .then( teamData => {
       const pageHTML = generatePage( teamData);
 
