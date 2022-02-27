@@ -1,18 +1,33 @@
+const Choices = require("inquirer/lib/objects/choices");
 
 
 
 const generateManager = managerData => {
     return `
       <ul class="list-unstyled">
-         <li>Employee Name: ${managerData.name}</li?
+         <li>Employee Name: ${managerData.name}</li>
          <li>Employee ID: ${managerData.id}</li>
          <li>Email: ${managerData.email}</li>
          <li>Office Number:${managerData.officeNumber}</i>
      </ul>`
  }
 
+ const generateEngineer = engineerData => {
+     return `
+     
+     <ul class="list-unstyled">
+     <li>Employee Name: ${engineerData.engineerName}</li>
+     <li>Employee ID: ${engineerData.engineerid}</li>
+     <li>Email: ${engineerData.engineerEmail}</li>
+     <li>Office Number:${engineerData.engineerGithub}</i>
+ </ul>
+     
+     
+     `
+ }
 
-const generatePage = teamData => {
+
+const generatePage = teamArray => {
 
 
 
@@ -39,7 +54,23 @@ const generatePage = teamData => {
   
     <div>
 
-       ${generateManager(managerData)}
+       ${generateManager(teamArray[0])}
+
+    </div>
+
+
+    <div>
+
+    ${generateEngineer(teamArray[1])}
+
+
+    ${
+        teamArray.map((engineerData) => {
+            if(engineerData.name == 'engineer') {
+                return generateEngineer(engineerData)
+            }
+        }).join("")
+    }
 
     </div>
      

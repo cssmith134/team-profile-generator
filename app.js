@@ -6,7 +6,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 let teamArray = [];
-let teamString = ``;
+
 
 
 const promptManager = () => {
@@ -33,14 +33,15 @@ return inquirer
 
     {
       type: 'input',
-      name: 'officenum',
+      name: 'officeNumber',
       message: 'Enter team managers office number'
     },
   ])
   .then((managerData) => {
-    promptTeam()
-    const manager = new Manager(managerData);
+    const manager = new Manager(managerData.name, managerData.id, managerData.email, managerData.officeNumber);
     teamArray.push(manager)
+
+    promptTeam();
   })
 
 };
@@ -88,6 +89,10 @@ return inquirer.prompt ([
 ])
 
   .then((engineerData) => {
+
+    const engineer = new Engineer(engineerData.engineerName, engineerData.engineerid, engineerData.engineerEmail, engineerData.engineerGithub)
+    teamArray.push(engineer);
+
 
     promptTeam()
 
@@ -167,7 +172,7 @@ const promptTeam = () => {
        promptIntern()
        
     } else {
-      generatePage()
+     htmlPage()
     }
     
 
@@ -175,19 +180,18 @@ const promptTeam = () => {
 
 };
 
-promptManager()
   
  
-  .then( teamData => {
-      const pageHTML = generatePage( teamData);
+const htmlPage = () => {
+      const pageHTML = generatePage(teamArray);
 
-    fs.writeFile('./index.html', pageHTML, err => {
+    fs.writeFile('./dist/index.html', pageHTML, err => {
      if (err) throw new Error(err);
 
       console.log('Page created! Check out index.html in this directory to see it!');
      });
 
-     fs.copyFile('./src/style.css', 'style.css', err => {
+     fs.copyFile('./src/style.css', './dist/style.css', err => {
        if (err) {
          console.log(err);
          return;
@@ -195,8 +199,12 @@ promptManager()
        console.log("styles added successfully!")
      })
 
-  });
+  };
   
+
+
+
+promptManager()
   
 //
 //
