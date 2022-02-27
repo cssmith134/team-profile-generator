@@ -142,6 +142,10 @@ return inquirer.prompt ([
   ])
 
   .then((internData) => {
+
+    const intern = new Intern(internData.internName, internData.internId, internData.internEmail, internData.internSchool)
+    teamArray.push(intern)
+
       promptTeam()
   })
 
@@ -191,7 +195,7 @@ const htmlPage = () => {
       console.log('Page created! Check out index.html in this directory to see it!');
      });
 
-     fs.copyFile('./src/style.css', './dist/style.css', err => {
+     fs.copyFile('./src/style.css', 'style.css', err => {
        if (err) {
          console.log(err);
          return;

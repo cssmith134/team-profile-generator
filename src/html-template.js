@@ -11,26 +11,29 @@ const generateManager = managerData => {
          <li>Office Number:${managerData.officeNumber}</i>
      </ul>`
  }
-
  const generateEngineer = engineerData => {
      return `
      
      <ul class="list-unstyled">
-     <li>Employee Name: ${engineerData.engineerName}</li>
-     <li>Employee ID: ${engineerData.engineerid}</li>
-     <li>Email: ${engineerData.engineerEmail}</li>
-     <li>Office Number:${engineerData.engineerGithub}</i>
+     <li>Engineer Name: ${engineerData.name}</li>
+     <li>Engineer ID: ${engineerData.id}</li>
+     <li>Engineer Email: ${engineerData.email}</li>
+     <li>Engineer Github:${engineerData.github}</i>
  </ul>
-     
-     
      `
  }
-
-
+ const generateIntern = internData => {
+    return `
+    
+    <ul class="list-unstyled">
+    <li>Intern Name: ${internData.name}</li>
+    <li>Intern ID: ${internData.id}</li>
+    <li>Intern Email: ${internData.email}</li>
+    <li>Intern School:${internData.school}</i>
+</ul>
+    `
+}
 const generatePage = teamArray => {
-
-
-
     return `
     <!DOCTYPE html> 
     <html lang="en"> 
@@ -54,7 +57,7 @@ const generatePage = teamArray => {
   
     <div>
 
-       ${generateManager(teamArray[0])}
+    ${generateManager(teamArray[0])}
 
     </div>
 
@@ -63,16 +66,14 @@ const generatePage = teamArray => {
 
     ${generateEngineer(teamArray[1])}
 
+    </div>
 
-    ${
-        teamArray.map((engineerData) => {
-            if(engineerData.name == 'engineer') {
-                return generateEngineer(engineerData)
-            }
-        }).join("")
-    }
+    <div>
+
+    ${generateIntern(teamArray[2])}
 
     </div>
+
      
     </body>
     </html>
