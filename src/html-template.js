@@ -4,33 +4,61 @@ const Choices = require("inquirer/lib/objects/choices");
 
 const generateManager = managerData => {
     return `
-      <ul class="list-unstyled">
-         <li>Employee Name: ${managerData.name}</li>
+    <div class = "col-sm-6 col-md-4 col-lg-3 col-12">
+    <div class = "card">
+    <div class = "card-header bg-primary">
+    <h4 class = "text-white text-center"> ${managerData.name}</h4>
+    </div>
+
+    <div class = "card-body">
+      <ul class="list-unstyled text-center">
          <li>Employee ID: ${managerData.id}</li>
          <li>Email: <a href="mailto:cssmith134@gmail.com"> ${managerData.email}</a></li>
          <li>Office Number:${managerData.officeNumber}</i>
-     </ul>`
+     </ul>
+     </div>
+     </div>
+     </div>
+     
+     
+     `
  }
  const generateEngineer = engineerData => {
      return `
-     
-     <ul class="list-unstyled">
-     <li>Engineer Name: ${engineerData.name}</li>
+     <div class = "col-sm-6 col-md-4 col-lg-3 col-12">
+     <div class = "card">
+     <div class = "card-header bg-primary">
+     <h4 class = "text-white text-center"> ${engineerData.name}</h4>
+     </div>
+     <ul class="list-unstyled text-center">
+   
      <li>Engineer ID: ${engineerData.id}</li>
      <li>Engineer Email: <a href="mailto:cssmith134@gmail.com"> ${engineerData.email}</a></li>
-     <li>GitHub Username: <a href="https://github.com/${engineerData.github}" target="_blank">Github Account</a></i>
- </ul>
+     <li>GitHub Username: <a href="https://github.com/${engineerData.github}">Github Account</a></i>
+    </ul>
+    </div>
+    </div>
+    </div>
      `
  }
  const generateIntern = internData => {
     return `
-    
-    <ul class="list-unstyled">
+  
+    <div class = "col-sm-6 col-md-4 col-lg-3 col-12">
+    <div class = "card">
+    <div class = "card-header bg-primary">
+    <h4 class = "text-white text-center"> ${internData.name}</h4>
+    </div>
+    <ul class="list-unstyled text-center">
+  
     <li>Intern Name: ${internData.name}</li>
     <li>Intern ID: ${internData.id}</li>
     <li>Intern Email: <a href="mailto:cssmith134@gmail.com"> ${internData.email}</a></li>
     <li>Intern School:${internData.school}</li>
 </ul>
+    </div>
+    </div>
+    </div>
     `
 }
 const generatePage = teamArray => {
@@ -55,8 +83,8 @@ const generatePage = teamArray => {
     </div>
     </div>
   
-    <div class="container-body container-fluid">
-    <div class="row">
+    <div class = "row">
+ 
 
     <div>
 
@@ -77,6 +105,9 @@ const generatePage = teamArray => {
 
     </div>
 
+   
+    </div>
+   
      
     </body>
     </html>
