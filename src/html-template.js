@@ -7,7 +7,7 @@ const generateManager = managerData => {
       <ul class="list-unstyled">
          <li>Employee Name: ${managerData.name}</li>
          <li>Employee ID: ${managerData.id}</li>
-         <li>Email: ${managerData.email}</li>
+         <li>Email: <a href="mailto:cssmith134@gmail.com"> ${managerData.email}</a></li>
          <li>Office Number:${managerData.officeNumber}</i>
      </ul>`
  }
@@ -17,8 +17,8 @@ const generateManager = managerData => {
      <ul class="list-unstyled">
      <li>Engineer Name: ${engineerData.name}</li>
      <li>Engineer ID: ${engineerData.id}</li>
-     <li>Engineer Email: ${engineerData.email}</li>
-     <li>Engineer Github:${engineerData.github}</i>
+     <li>Engineer Email: <a href="mailto:cssmith134@gmail.com"> ${engineerData.email}</a></li>
+     <li>GitHub Username: <a href="https://github.com/${engineerData.github}" target="_blank">Github Account</a></i>
  </ul>
      `
  }
@@ -28,8 +28,8 @@ const generateManager = managerData => {
     <ul class="list-unstyled">
     <li>Intern Name: ${internData.name}</li>
     <li>Intern ID: ${internData.id}</li>
-    <li>Intern Email: ${internData.email}</li>
-    <li>Intern School:${internData.school}</i>
+    <li>Intern Email: <a href="mailto:cssmith134@gmail.com"> ${internData.email}</a></li>
+    <li>Intern School:${internData.school}</li>
 </ul>
     `
 }
@@ -49,12 +49,15 @@ const generatePage = teamArray => {
     <body>
 
     <div class="header">
-    <div class="jumbotron bg-warning">
-        <h1> My Team </h1>
+    <div class="jumbotron bg-danger">
+        <h1 class="display-4 text-white text-center"> My Team </h1>
 
     </div>
     </div>
   
+    <div class="container-body container-fluid">
+    <div class="row">
+
     <div>
 
     ${generateManager(teamArray[0])}
